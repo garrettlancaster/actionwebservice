@@ -229,7 +229,7 @@ module ActionWebService # :nodoc:
                             binding.type.each_member do |name, type, options|
                               b = marshaler.register_type(type)
 															options ||= {}
-															xm.xsd(:element, {'name' => name, 'type' => b.qualified_type_name('typens')}.merge(options)
+															xm.xsd(:element, {'name' => name, 'type' => b.qualified_type_name('typens')}.merge(options))
                             end
                           end
                         end
