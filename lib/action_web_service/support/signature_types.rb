@@ -201,8 +201,9 @@ module ActionWebService # :nodoc:
   class StructuredType < BaseType # :nodoc:
     def each_member
       if @type_class.respond_to?(:members)
-        @type_class.members.each do |name, type|
-          yield name, type
+				@type_class.members.each do |name, type_options|
+					type, options = type_options
+					yield name, type, options
         end
       elsif @type_class.respond_to?(:columns)
         i = -1
