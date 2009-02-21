@@ -226,9 +226,10 @@ module ActionWebService # :nodoc:
                       when binding.type.structured?
                         xm.xsd(:complexType, 'name' => binding.type_name) do
                           xm.xsd(:all) do
-                            binding.type.each_member do |name, type|
+                            binding.type.each_member do |name, type, options|
                               b = marshaler.register_type(type)
-                              xm.xsd(:element, 'name' => name, 'type' => b.qualified_type_name('typens'))
+															options ||= {}
+															xm.xsd(:element, {'name' => name, 'type' => b.qualified_type_name('typens')}.merge(options)
                             end
                           end
                         end

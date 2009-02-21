@@ -12,7 +12,7 @@ module ActionWebService
   #     member :id,         :int
   #     member :firstnames, [:string]
   #     member :lastname,   :string
-  #     member :email,      :string
+  #     member :email,      :string,	:nillable => true
   #   end
   #   person = Person.new(:id => 5, :firstname => 'john', :lastname => 'doe')
   #
@@ -40,12 +40,13 @@ module ActionWebService
     end
 
     class << self
-      # Creates a structure member with the specified +name+ and +type+. Generates
+			# Creates a structure member with the specified +name+ and +type+. Additional wsdl
+			# schema properties may be specified in the optional hash +options+. Generates
       # accessor methods for reading and writing the member value.
-      def member(name, type)
+      def member(name, type, options={})
         name = name.to_sym
         type = ActionWebService::SignatureTypes.canonical_signature_entry({ name => type }, 0)
-        write_inheritable_hash("struct_members", name => type)
+        write_inheritable_hash("struct_members", name => [type, options])
         class_eval <<-END
           def #{name}; @#{name}; end
           def #{name}=(value); @#{name} = value; end
@@ -57,7 +58,8 @@ module ActionWebService
       end
 
       def member_type(name) # :nodoc:
-        members[name.to_sym]
+				type, options = members[name.to_sym]
+				type
       end
     end
   end
