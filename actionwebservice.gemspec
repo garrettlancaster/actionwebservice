@@ -13,6 +13,7 @@ Gem::Specification.new do |s|
   s.add_dependency('actionpack', '= 2.3.4')
   s.add_dependency('activerecord', '= 2.3.4')
 
+  
   s.has_rdoc = true
   s.requirements << 'none'
   s.require_path = 'lib'
