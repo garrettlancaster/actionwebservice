@@ -62,7 +62,7 @@ Rake::RDocTask.new { |rdoc|
 # Create compressed packages
 spec = Gem::Specification.new do |s|
   s.platform = Gem::Platform::RUBY
-  s.name = PKG_NAME
+  s.name = "emiddleton-#{PKG_NAME}"
   s.summary = "Web service support for Action Pack."
   s.description = %q{Adds WSDL/SOAP and XML-RPC web service support to Action Pack}
   s.version = PKG_VERSION
