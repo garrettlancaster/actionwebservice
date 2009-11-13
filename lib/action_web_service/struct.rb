@@ -23,7 +23,10 @@ module ActionWebService
     # it can contain initial values for the structure member.
     def initialize(values={})
       if values.is_a?(Hash)
-        values.map{|k,v| __send__('%s=' % k.to_s, v)}
+        values.map do |k,v| 
+          val = (v.respond_to?(:in_time_zone) ? v.in_time_zone("UTC") : v)
+          __send__('%s=' % k.to_s, val)
+        end
       end
     end
 
