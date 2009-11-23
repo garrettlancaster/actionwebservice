@@ -28,10 +28,14 @@ ActiveRecord::Base.configurations = {
     :username => "root",
     :encoding => "utf8",
     :database => "actionwebservice_unittest"
+  },
+  'sqlite3' => {
+    :adapter  => "sqlite3",
+    :database => "actionwebservice_unittest.db"
   }
 }
 
-ActiveRecord::Base.establish_connection 'mysql'
+ActiveRecord::Base.establish_connection 'sqlite3'
 
 class ActiveSupport::TestCase
   include ActiveRecord::TestFixtures

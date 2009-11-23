@@ -38,6 +38,13 @@ task :build_database do
   %x( mysql -uroot actionwebservice_unittest < #{File.join(SCHEMA_PATH, 'mysql.sql')} )
 end
 
+desc 'Build the sqlite3 test database'
+task :build_sqlite3_database do
+  filename = 'actionwebservice_unittest.db'
+  File.delete filename if File.exist? filename
+  %x(sqlite3 #{filename}  < #{File.join(SCHEMA_PATH, 'sqlite3.sql')})
+end
+
 
 # Generate the RDoc documentation
 Rake::RDocTask.new { |rdoc|

@@ -224,8 +224,8 @@ module ActionWebService
 
       def service_method_list(service)
         action = @scaffold_action_name + '_method_params'
-        methods = service.api_methods_full.map do |desc, name|
-          content_tag("li", link_to(desc, :action => action, :service => service.name, :method => name))
+        methods = service.api_methods_full.sort {|a, b| a[1] <=> b[1]}.map do |desc, name|
+          content_tag("li", link_to(name, :action => action, :service => service.name, :method => name))
         end
         content_tag("ul", methods.join("\n"))
       end
