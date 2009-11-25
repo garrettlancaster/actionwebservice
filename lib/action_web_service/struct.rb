@@ -51,7 +51,10 @@ module ActionWebService
         write_inheritable_hash("struct_members", name => type)
         class_eval <<-END
           def #{name}; @#{name}; end
-          def #{name}=(value); @#{name} = value; end
+          def #{name}=(value)
+            val = (value.respond_to?(:in_time_zone) ? value.in_time_zone("UTC") : value)
+            @#{name} = val;
+          end
         END
       end
   
