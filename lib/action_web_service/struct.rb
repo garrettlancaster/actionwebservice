@@ -24,7 +24,7 @@ module ActionWebService
     def initialize(values={})
       if values.is_a?(Hash)
         values.map do |k,v| 
-          __send__('%s=' % k.to_s, val)
+          __send__('%s=' % k.to_s, v)
         end
       end
     end
