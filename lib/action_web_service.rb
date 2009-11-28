@@ -34,7 +34,7 @@ end
 
 $:.unshift(File.dirname(__FILE__) + "/action_web_service/vendor/")
 
-require 'action_web_service/saop/string_to_datetime_for_soap'
+require 'action_web_service/soap/string_to_datetime_for_soap'
 require 'action_web_service/support/class_inheritable_options'
 require 'action_web_service/support/signature_types'
 require 'action_web_service/base'
