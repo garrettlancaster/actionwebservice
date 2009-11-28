@@ -24,7 +24,6 @@ module ActionWebService
     def initialize(values={})
       if values.is_a?(Hash)
         values.map do |k,v| 
-          val = (v.respond_to?(:in_time_zone) ? v.in_time_zone("UTC") : v)
           __send__('%s=' % k.to_s, val)
         end
       end
@@ -52,8 +51,7 @@ module ActionWebService
         class_eval <<-END
           def #{name}; @#{name}; end
           def #{name}=(value)
-            val = (value.respond_to?(:in_time_zone) ? value.in_time_zone("UTC") : value)
-            @#{name} = val;
+            @#{name} = value;
           end
         END
       end
