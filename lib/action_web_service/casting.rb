@@ -56,6 +56,8 @@ module ActionWebService # :nodoc:
             value.entries.map do |entry|
               cast(entry, signature_type.element_type)
             end
+          elsif signature_type.simple?
+            return value
           elsif signature_type.structured?
             cast_to_structured_type(value, signature_type)
           elsif !signature_type.custom?
@@ -114,7 +116,7 @@ module ActionWebService # :nodoc:
             value.kind_of?(DateTime) ? value : DateTime.parse(value.to_s)
           end
         end
-
+        
         def cast_to_structured_type(value, signature_type) # :nodoc:
           obj = nil
           # if the canonical classes are the same or if the given value is of 

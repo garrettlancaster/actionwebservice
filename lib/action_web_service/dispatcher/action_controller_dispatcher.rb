@@ -172,6 +172,7 @@ module ActionWebService # :nodoc:
 
           def to_wsdl
             xml = ''
+            inflect = web_service_inflect_type
             dispatching_mode = web_service_dispatching_mode
             global_service_name = wsdl_service_name
             namespace = wsdl_namespace || 'urn:ActionWebService'
@@ -221,8 +222,7 @@ module ActionWebService # :nodoc:
                       end
                     end
                     simple_types.each do |binding|
-                      # TODO Should be able to determine if it will use camelize option
-                      xm.xsd(:simpleType, 'name' => binding.type_name) do
+                      xm.xsd(:simpleType, 'name' => inflect ? binding.type_name.camelize(:lower) : binding.type_name) do
                         xm.xsd(:restriction, 'base' => "xsd:#{binding.type.base}") do
                           binding.type.restrictions do |name, value|
                             xm.xsd(name.to_sym, 'value' => value)
@@ -231,8 +231,7 @@ module ActionWebService # :nodoc:
                       end
                     end
                     array_types.each do |binding|
-                      # TODO Should be able to determine if it will use camelize option
-                      xm.xsd(:complexType, 'name' => binding.type_name) do
+                      xm.xsd(:complexType, 'name' => inflect ? binding.type_name.camelize(:lower) : binding.type_name) do
                         xm.xsd(:complexContent) do
                           xm.xsd(:restriction, 'base' => 'soapenc:Array') do
                             xm.xsd(:attribute, 'ref' => 'soapenc:arrayType',
@@ -242,12 +241,11 @@ module ActionWebService # :nodoc:
                       end
                     end
                     complex_types.each do |binding|
-                      # TODO Should be able to determine if it will use camelize option
-                      xm.xsd(:complexType, 'name' => binding.type_name) do
+                      xm.xsd(:complexType, 'name' => inflect ? binding.type_name.camelize(:lower) : binding.type_name) do
                         xm.xsd(:all) do
                           binding.type.each_member do |name, type|
                             b = marshaler.register_type(type)
-                            xm.xsd(:element, 'name' => name, 'type' => b.qualified_type_name('typens'))
+                            xm.xsd(:element, 'name' => inflect ? name.to_s.camelize : name, 'type' => b.qualified_type_name('typens'))
                           end
                         end
                       end
