@@ -42,6 +42,38 @@ class TC_Struct < Test::Unit::TestCase
     assert_equal(true, @struct['deleted'])
     assert_equal(['test@test.com'], @struct['emails'])
   end
+  
+  def test_initializing_with_invalid_hash_and_not_checking
+
+    attrib_hash = { :id      => 5,
+                    :name    => 'hello',
+                    :items   => ['one', 'two'],
+                    :deleted => true,
+                    :emails  => ['test@test.com'],
+                    :extra   => "extra_field"
+                  }
+                                
+    assert_raise NoMethodError do
+      struct = Struct.new(attrib_hash)
+    end
+  end
+  
+  def test_initializing_with_invalid_hash_and_with_hash_checking
+
+     attrib_hash = { :id      => 5,
+                     :name    => 'hello',
+                     :items   => ['one', 'two'],
+                     :deleted => true,
+                     :emails  => ['test@test.com'],
+                     :extra   => "extra_field"
+                   }
+
+     assert_nothing_raised do
+        struct = Struct.new(attrib_hash, true)
+     end
+     struct = Struct.new(attrib_hash, true)
+     assert_equal(5, struct['id'])
+   end
 
   def test_each_pair
     @struct.each_pair do |name, value|

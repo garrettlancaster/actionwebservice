@@ -1,3 +1,15 @@
+*2.3.5*
+
+* Added support for sqlite3 in testing [Steve Weet]
+
+* Allow ActionWebService::Struct to be initialized with a Hash that contains keys not included within the members [Steve Weet]
+
+* Depend on Action Pack >= 2.3.5
+
+* Depend on Active Record >= 2.3.5
+
+* Added init.rb to allow using as a rails plugin
+
 *2.1.0*
 
 * Porting to Rails 2.1.0 [Kent Sibilev]

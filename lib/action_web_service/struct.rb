@@ -21,9 +21,11 @@ module ActionWebService
   class Struct
     # If a Hash is given as argument to an ActionWebService::Struct constructor,
     # it can contain initial values for the structure member.
-    def initialize(values={})
+    # Values passed within the Hash that do not reflect member within the Struct will raise
+    # a NoMethodError unless the optional check_hash boolean is true.
+    def initialize(values={}, check_hash = false)
       if values.is_a?(Hash)
-        values.map{|k,v| __send__('%s=' % k.to_s, v)}
+        values.map { |k,v| __send__("#{k}=", v) unless (check_hash &&  !self.respond_to?("#{k}=") ) }
       end
     end
 
