@@ -10,6 +10,9 @@
 
 * Added init.rb to allow using as a rails plugin
 
+*2.3.4.2*
+* Adding Simple Type possible as custom type [Matheus Paschoal]
+
 *2.1.0*
 
 * Porting to Rails 2.1.0 [Kent Sibilev]

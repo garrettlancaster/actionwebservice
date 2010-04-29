@@ -212,24 +212,42 @@ module ActionWebService # :nodoc:
               if custom_types.size > 0
                 xm.types do
                   xm.xsd(:schema, 'xmlns' => XsdNs, 'targetNamespace' => namespace) do
+                    simple_types, array_types, complex_types = [], [], []
                     custom_types.each do |binding|
                       case
-                      when binding.type.array?
-                        xm.xsd(:complexType, 'name' => binding.type_name) do
-                          xm.xsd(:complexContent) do
-                            xm.xsd(:restriction, 'base' => 'soapenc:Array') do
-                              xm.xsd(:attribute, 'ref' => 'soapenc:arrayType',
-                                                 'wsdl:arrayType' => binding.element_binding.qualified_type_name('typens') + '[]')
-                            end
+                        when binding.type.simple? : simple_types.push binding
+                        when binding.type.array? : array_types.push binding
+                        when binding.type.structured? : complex_types.push binding
+                      end
+                    end
+                    simple_types.each do |binding|
+                      # TODO Should be able to determine if it will use camelize option
+                      xm.xsd(:simpleType, 'name' => binding.type_name) do
+                        xm.xsd(:restriction, 'base' => "xsd:#{binding.type.base}") do
+                          binding.type.restrictions do |name, value|
+                            xm.xsd(name.to_sym, 'value' => value)
                           end
                         end
-                      when binding.type.structured?
-                        xm.xsd(:complexType, 'name' => binding.type_name) do
-                          xm.xsd(:all) do
-                            binding.type.each_member do |name, type|
-                              b = marshaler.register_type(type)
-                              xm.xsd(:element, 'name' => name, 'type' => b.qualified_type_name('typens'))
-                            end
+                      end
+                    end
+                    array_types.each do |binding|
+                      # TODO Should be able to determine if it will use camelize option
+                      xm.xsd(:complexType, 'name' => binding.type_name) do
+                        xm.xsd(:complexContent) do
+                          xm.xsd(:restriction, 'base' => 'soapenc:Array') do
+                            xm.xsd(:attribute, 'ref' => 'soapenc:arrayType',
+                                               'wsdl:arrayType' => binding.element_binding.qualified_type_name('typens') + '[]')
+                          end
+                        end
+                      end
+                    end
+                    complex_types.each do |binding|
+                      # TODO Should be able to determine if it will use camelize option
+                      xm.xsd(:complexType, 'name' => binding.type_name) do
+                        xm.xsd(:all) do
+                          binding.type.each_member do |name, type|
+                            b = marshaler.register_type(type)
+                            xm.xsd(:element, 'name' => name, 'type' => b.qualified_type_name('typens'))
                           end
                         end
                       end

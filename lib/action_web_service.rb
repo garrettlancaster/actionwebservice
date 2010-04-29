@@ -34,6 +34,7 @@ end
 
 $:.unshift(File.dirname(__FILE__) + "/action_web_service/vendor/")
 
+require 'action_web_service/string_to_datetime_for_soap'
 require 'action_web_service/support/class_inheritable_options'
 require 'action_web_service/support/signature_types'
 require 'action_web_service/base'
@@ -41,6 +42,7 @@ require 'action_web_service/client'
 require 'action_web_service/invocation'
 require 'action_web_service/api'
 require 'action_web_service/casting'
+require 'action_web_service/simple'
 require 'action_web_service/struct'
 require 'action_web_service/container'
 require 'action_web_service/protocol'

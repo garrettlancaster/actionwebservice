@@ -35,8 +35,12 @@ module ActionWebService # :nodoc:
         type = canonical_type(type)
         if type.is_a?(Symbol)
           BaseType.new(orig_spec, type, name)
-        else
-          StructuredType.new(orig_spec, type, name)
+        else 
+          if type.is_a?(Hash)
+            complexity, type = type.keys.first.to_sym, type.values.first 
+          end
+          element = complexity || :complex
+          element == :simple ? SimpleType.new(orig_spec, type, name) : StructuredType.new(orig_spec, type, name)
         end
       end
     end
@@ -173,6 +177,10 @@ module ActionWebService # :nodoc:
     def structured?
       false
     end
+    
+    def simple?
+      false
+    end
 
     def human_name(show_name=true)
       type_type = array? ? element_type.type.to_s : self.type.to_s
@@ -217,6 +225,28 @@ module ActionWebService # :nodoc:
     end
 
     def structured?
+      true
+    end
+  end
+  
+  class SimpleType < BaseType # :nodoc:
+    def base
+      @type_class.restriction_base if @type_class.respond_to?(:restriction_base)
+    end
+    
+    def restrictions
+      if @type_class.respond_to?(:restrictions)
+        @type_class.restrictions.each do |name, value|
+          yield name, value
+        end
+      end
+    end
+    
+    def custom?
+      true
+    end
+    
+    def simple?
       true
     end
   end
