@@ -25,7 +25,7 @@ end
 ActiveRecord::Base.configurations = {
   'mysql' => {
     :adapter  => "mysql",
-    :username => "root",
+    :username => "unit_tester",
     :encoding => "utf8",
     :database => "actionwebservice_unittest"
   },

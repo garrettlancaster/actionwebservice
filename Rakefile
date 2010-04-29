@@ -34,8 +34,8 @@ SCHEMA_PATH = File.join(File.dirname(__FILE__), *%w(test fixtures db_definitions
 
 desc 'Build the MySQL test database'
 task :build_database do 
-  %x( mysqladmin -uroot create actionwebservice_unittest )
-  %x( mysql -uroot actionwebservice_unittest < #{File.join(SCHEMA_PATH, 'mysql.sql')} )
+  %x( mysql -u root -p --execute='CREATE DATABASE actionwebservice_unittest; CREATE USER unit_tester@localhost; GRANT ALL PRIVILEGES ON actionwebservice_unittest.* TO unit_tester;' )
+  %x( mysql -uunit_tester -p actionwebservice_unittest < #{File.join(SCHEMA_PATH, 'mysql.sql')} )
 end
 
 desc 'Build the sqlite3 test database'
