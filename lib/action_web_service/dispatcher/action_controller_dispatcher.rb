@@ -243,9 +243,10 @@ module ActionWebService # :nodoc:
                     complex_types.each do |binding|
                       xm.xsd(:complexType, 'name' => inflect ? binding.type_name.camelize(:lower) : binding.type_name) do
                         xm.xsd(:all) do
-                          binding.type.each_member do |name, type|
+                          binding.type.each_member do |name, type, options|
+                            options ||= {}
                             b = marshaler.register_type(type)
-                            xm.xsd(:element, 'name' => inflect ? name.to_s.camelize : name, 'type' => b.qualified_type_name('typens'))
+                            xm.xsd(:element, {'name' => inflect ? name.to_s.camelize : name, 'type' => b.qualified_type_name('typens')}.merge(options))
                           end
                         end
                       end

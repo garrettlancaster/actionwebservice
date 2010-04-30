@@ -23,11 +23,11 @@ class TC_Struct < Test::Unit::TestCase
 
   def test_members
     assert_equal(5, Struct.members.size)
-    assert_equal(Integer, Struct.members[:id].type_class)
-    assert_equal(String, Struct.members[:name].type_class)
-    assert_equal(String, Struct.members[:items].element_type.type_class)
-    assert_equal(TrueClass, Struct.members[:deleted].type_class)
-    assert_equal(String, Struct.members[:emails].element_type.type_class)
+    assert_equal(Integer, Struct.members[:id][0].type_class)
+    assert_equal(String, Struct.members[:name][0].type_class)
+    assert_equal(String, Struct.members[:items][0].element_type.type_class)
+    assert_equal(TrueClass, Struct.members[:deleted][0].type_class)
+    assert_equal(String, Struct.members[:emails][0].element_type.type_class)
   end
 
   def test_initializer_and_lookup

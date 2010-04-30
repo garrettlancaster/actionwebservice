@@ -94,7 +94,8 @@ module ActionWebService # :nodoc:
           else
             if value.is_a?(ActionWebService::Struct)
               struct = {}
-              value.class.members.each do |name, type|
+              value.class.members.each do |name, type_options|
+                type, options = type_options
                 member_value = value[name]
                 next if member_value.nil?
                 struct[name.to_s] = value_to_xmlrpc_wire_format(member_value, type)
