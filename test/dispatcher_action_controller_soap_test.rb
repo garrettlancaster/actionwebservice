@@ -14,9 +14,9 @@ class ActionController::Base
   end
 end
 
-class AutoLoadController < ActionController::Base; end
-class FailingAutoLoadController < ActionController::Base; end
-class BrokenAutoLoadController < ActionController::Base; end
+class AutoLoadController < ActionController::Base; acts_as_web_service; end
+class FailingAutoLoadController < ActionController::Base; acts_as_web_service; end
+class BrokenAutoLoadController < ActionController::Base; acts_as_web_service; end
 
 class TC_DispatcherActionControllerSoap < Test::Unit::TestCase
   include DispatcherTest

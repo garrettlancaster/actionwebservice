@@ -5,6 +5,7 @@ module ContainerTest
   $deferred_service = Object.new
   
   class DelegateContainer < ActionController::Base
+    acts_as_web_service
     web_service_dispatching_mode :delegated
   
     attr :flag
@@ -20,6 +21,7 @@ module ContainerTest
   end
   
   class DirectContainer < ActionController::Base
+    acts_as_web_service
     web_service_dispatching_mode :direct
   end
 

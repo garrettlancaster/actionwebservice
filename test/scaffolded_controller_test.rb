@@ -28,6 +28,7 @@ class ScaffoldedControllerTestAPI < ActionWebService::API::Base
 end
 
 class ScaffoldedController < ActionController::Base
+  acts_as_web_service
   web_service_api ScaffoldedControllerTestAPI
   web_service_scaffold :scaffold_invoke
 

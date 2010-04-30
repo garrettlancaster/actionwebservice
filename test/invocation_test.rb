@@ -27,6 +27,7 @@ module InvocationTest
   InterceptorClass = Interceptor.new 
 
   class Service < ActionController::Base
+    acts_as_web_service 
     web_service_api API
 
     before_invocation :intercept_before, :except => [:no_before]

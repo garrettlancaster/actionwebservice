@@ -21,6 +21,7 @@ class TestInvokeService < ActionWebService::Base
 end
 
 class TestController < ActionController::Base
+  acts_as_web_service
   def rescue_action(e); raise e; end
 end
 

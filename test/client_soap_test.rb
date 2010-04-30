@@ -25,6 +25,7 @@ module ClientSoapTest
   end
 
   class ClientContainer < ActionController::Base
+    acts_as_web_service
     web_client_api :client, :soap, "http://localhost:#{PORT}/client/api", :api => ClientTest::API
     web_client_api :invalid, :null, "", :api => true
 

@@ -160,6 +160,7 @@ module DispatcherTest
   end
 
   class AbstractController < ActionController::Base
+    acts_as_web_service
     def generate_wsdl
       self.request ||= ::ActionController::TestRequest.new
       to_wsdl
