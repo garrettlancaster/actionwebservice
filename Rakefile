@@ -8,7 +8,7 @@ require 'rake/contrib/rubyforgepublisher'
 require 'fileutils'
 require File.join(File.dirname(__FILE__), 'lib', 'action_web_service', 'version')
 
-PKG_BUILD     = ENV['PKG_BUILD'] ? '.' + ENV['PKG_BUILD'] : ''
+PKG_BUILD     = ENV['PKG_BUILD'] ? '.' + ENV['PKG_BUILD'] : ".#{Time.now.strftime('%Y%m%d%H%M%S')}"
 PKG_NAME      = 'rubyjedi-actionwebservice'
 PKG_VERSION   = ActionWebService::VERSION::STRING + PKG_BUILD
 PKG_FILE_NAME   = "#{PKG_NAME}-#{PKG_VERSION}"
@@ -79,8 +79,8 @@ spec = Gem::Specification.new do |s|
   s.rubyforge_project = "aws"
   s.homepage = "http://www.rubyonrails.org"
 
-  s.add_dependency('actionpack',   '~> 2.3.5' + PKG_BUILD)
-  s.add_dependency('activerecord', '~> 2.3.5' + PKG_BUILD)
+  s.add_dependency('actionpack',   '~> 2.3.5')
+  s.add_dependency('activerecord', '~> 2.3.5')
 
   s.has_rdoc = true
   s.requirements << 'none'
