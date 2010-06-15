@@ -216,9 +216,9 @@ module ActionWebService # :nodoc:
                     simple_types, array_types, complex_types = [], [], []
                     custom_types.each do |binding|
                       case
-                        when binding.type.simple? : simple_types.push binding
-                        when binding.type.array? : array_types.push binding
-                        when binding.type.structured? : complex_types.push binding
+                        when binding.type.simple? then simple_types.push binding
+                        when binding.type.array? then array_types.push binding
+                        when binding.type.structured? then complex_types.push binding
                       end
                     end
                     simple_types.each do |binding|
