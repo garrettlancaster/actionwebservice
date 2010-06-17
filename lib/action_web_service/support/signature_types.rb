@@ -1,3 +1,4 @@
+# encoding: UTF-8
 module ActionWebService # :nodoc:
   # Action Web Service supports the following base types in a signature:
   #

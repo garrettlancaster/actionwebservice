@@ -1,3 +1,4 @@
+# encoding: UTF-8
 module ActionWebService # :nodoc:
   module Invocation # :nodoc:
     class InvocationError < ActionWebService::ActionWebServiceError # :nodoc:

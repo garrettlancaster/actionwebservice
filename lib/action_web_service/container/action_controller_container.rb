@@ -1,3 +1,4 @@
+# encoding: UTF-8
 module ActionWebService # :nodoc:
   module Container # :nodoc:
     module ActionController # :nodoc:

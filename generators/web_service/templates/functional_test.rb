@@ -1,3 +1,4 @@
+# encoding: UTF-8
 require File.dirname(__FILE__) + '<%= '/..' * class_nesting_depth %>/../test_helper'
 require '<%= file_path %>_controller'
 

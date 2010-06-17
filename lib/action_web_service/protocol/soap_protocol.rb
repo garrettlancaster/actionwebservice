@@ -1,3 +1,4 @@
+# encoding: UTF-8
 require 'action_web_service/protocol/soap_protocol/marshaler'
 require 'soap/streamHandler'
 require 'action_web_service/client/soap_client'

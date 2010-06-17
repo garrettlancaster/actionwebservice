@@ -1,3 +1,4 @@
+# encoding: UTF-8
 require 'xmlrpc/marshal'
 require 'action_web_service/client/xmlrpc_client'
 

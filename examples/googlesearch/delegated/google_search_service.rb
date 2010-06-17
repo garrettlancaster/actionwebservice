@@ -1,3 +1,4 @@
+# encoding: UTF-8
 class DirectoryCategory < ActionWebService::Struct
   member :fullViewableName, :string
   member :specialEncoding,  :string

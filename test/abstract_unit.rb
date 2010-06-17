@@ -1,3 +1,4 @@
+# encoding: UTF-8
 $: << "#{File.dirname(__FILE__)}/../lib"
 ENV["RAILS_ENV"] = "test"
 require 'rubygems'

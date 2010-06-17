@@ -1,3 +1,4 @@
+# encoding: UTF-8
 module ActionWebService # :nodoc:
   module Client # :nodoc:
     class ClientError < StandardError # :nodoc:

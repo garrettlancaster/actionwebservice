@@ -1,3 +1,4 @@
+# encoding: UTF-8
 require 'abstract_dispatcher'
 
 class TC_DispatcherActionControllerXmlRpc < Test::Unit::TestCase

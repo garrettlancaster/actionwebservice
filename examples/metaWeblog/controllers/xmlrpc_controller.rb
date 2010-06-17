@@ -1,3 +1,4 @@
+# encoding: UTF-8
 #
 # example controller implementing both blogger and metaWeblog APIs
 # in a way that should be compatible with clients supporting both/either.

@@ -1,3 +1,4 @@
+# encoding: UTF-8
 class WebServiceGenerator < Rails::Generator::NamedBase
   def manifest
     record do |m|

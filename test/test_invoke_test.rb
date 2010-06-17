@@ -1,3 +1,4 @@
+# encoding: UTF-8
 require 'abstract_unit'
 require 'action_web_service/test_invoke'
 

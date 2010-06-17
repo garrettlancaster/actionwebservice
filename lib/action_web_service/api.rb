@@ -1,3 +1,4 @@
+# encoding: UTF-8
 module ActionWebService # :nodoc:
   module API # :nodoc:
     # A web service API class specifies the methods that will be available for

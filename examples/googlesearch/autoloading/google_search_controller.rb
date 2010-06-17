@@ -1,3 +1,4 @@
+# encoding: UTF-8
 class GoogleSearchController < ApplicationController
   wsdl_service_name 'GoogleSearch'
 

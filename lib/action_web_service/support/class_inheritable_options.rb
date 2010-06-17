@@ -1,3 +1,4 @@
+# encoding: UTF-8
 class Class # :nodoc:
   def class_inheritable_option(sym, default_value=nil)
     write_inheritable_attribute sym, default_value

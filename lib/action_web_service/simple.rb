@@ -1,3 +1,4 @@
+# encoding: UTF-8
 module ActionWebService
   # To send simple types across the wire, derive from ActionWebService::Simple,
   # and use +base+ to declare the base type for it restriction and,

@@ -1,3 +1,4 @@
+# encoding: UTF-8
 require 'abstract_unit'
 
 ActionController::Routing::Routes.draw do |map|

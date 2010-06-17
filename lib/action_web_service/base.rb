@@ -1,3 +1,4 @@
+# encoding: UTF-8
 module ActionWebService # :nodoc:
   class ActionWebServiceError < StandardError # :nodoc:
   end

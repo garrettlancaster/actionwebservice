@@ -1,3 +1,4 @@
+# encoding: UTF-8
 require 'soap/mapping'
 
 # hack to improve the .Net interoperability
