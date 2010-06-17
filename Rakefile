@@ -25,9 +25,13 @@ task :default => [ :test ]
 
 # Run the unit tests
 Rake::TestTask.new { |t|
+  test_scope = ENV['SCOPE'] || '*'
+  t.test_files = FileList[ test_scope.split(',').collect{|scope| "test/#{scope}_test.rb"} ]
+
+  t.warning = !!ENV['WARNINGS']
+  t.verbose = !!ENV['VERBOSE']
+
   t.libs << "test"
-  t.test_files = Dir['test/*_test.rb']
-  t.verbose = true
 }
 
 SCHEMA_PATH = File.join(File.dirname(__FILE__), *%w(test fixtures db_definitions))
@@ -74,8 +78,8 @@ spec = Gem::Specification.new do |s|
   s.description = %q{Adds WSDL/SOAP and XML-RPC web service support to Action Pack}
   s.version = PKG_VERSION
 
-  s.author = "Leon Breedt, Kent Sibilev"
-  s.email = "bitserf@gmail.com, ksibilev@yahoo.com"
+  s.author = "Laurence A. Lee, Leon Breedt, Kent Sibilev"
+  s.email = "rubyjedi@gmail.com, bitserf@gmail.com, ksibilev@yahoo.com"
   s.rubyforge_project = "aws"
   s.homepage = "http://www.rubyonrails.org"
 
