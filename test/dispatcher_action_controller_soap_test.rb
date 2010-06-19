@@ -69,8 +69,13 @@ class TC_DispatcherActionControllerSoap < Test::Unit::TestCase
 
   def test_utf8
     @direct_controller.web_service_exception_reporting = true
-    $KCODE = 'u'
-    assert_equal(Utf8String, do_method_call(@direct_controller, 'TestUtf8'))
+    if RUBY_VERSION.to_f >= 1.9
+      utf8_string = Utf8String.force_encoding('UTF-8')
+    else
+      $KCODE = 'u' 
+      utf8_string = Utf8String.to_s
+    end
+    assert_equal(utf8_string, do_method_call(@direct_controller, 'TestUtf8'))
     retval = SOAP::Processor.unmarshal(@response_body).body.response
     assert retval.is_a?(SOAP::SOAPString)
 
@@ -78,7 +83,9 @@ class TC_DispatcherActionControllerSoap < Test::Unit::TestCase
     # will be sent back as base64 by SOAP4R. By the time we get it here though,
     # it will be decoded back into a string. So lets read the base64 value
     # from the message body directly.
-    $KCODE = 'NONE'
+    unless RUBY_VERSION.to_f >= 1.9
+      $KCODE = 'NONE'
+    end
     do_method_call(@direct_controller, 'TestUtf8')
     retval = SOAP::Processor.unmarshal(@response_body).body.response
     # not sure why this test fails but too lazy to find out why :-(
