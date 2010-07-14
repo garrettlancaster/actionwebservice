@@ -80,11 +80,11 @@ spec = Gem::Specification.new do |s|
 
   s.author = "Laurence A. Lee, Leon Breedt, Kent Sibilev"
   s.email = "rubyjedi@gmail.com, bitserf@gmail.com, ksibilev@yahoo.com"
-  s.rubyforge_project = "aws"
-  s.homepage = "http://www.rubyonrails.org"
+  s.homepage = "http://wiki.github.com/rubyjedi/actionwebservice/"
 
-  s.add_dependency('actionpack',   '~> 2.3.5')
-  s.add_dependency('activerecord', '~> 2.3.5')
+  s.add_dependency('activesupport', '~> 2.3.0')
+  s.add_dependency('actionpack',    '~> 2.3.0')
+  s.add_dependency('activerecord',  '~> 2.3.0')
 
   s.has_rdoc = true
   s.requirements << 'none'
