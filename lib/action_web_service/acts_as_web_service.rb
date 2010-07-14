@@ -18,6 +18,7 @@ module ActionWebService
         include ActionWebService::Invocation
         include ActionWebService::Dispatcher
         include ActionWebService::Dispatcher::ActionController
+        include ActionWebService::Dispatcher::ActionController::WsdlAction
         include ActionWebService::Scaffolding
       end
     end

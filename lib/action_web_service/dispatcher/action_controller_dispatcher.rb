@@ -31,7 +31,7 @@ module ActionWebService # :nodoc:
       module ClassMethods # :nodoc:
         def inherited_with_action_controller(child)
           inherited_without_action_controller(child)
-          child.send(:include, ActionWebService::Dispatcher::ActionController::WsdlAction)
+          # child.send(:include, ActionWebService::Dispatcher::ActionController::WsdlAction)
         end
       end
 
