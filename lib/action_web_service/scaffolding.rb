@@ -125,8 +125,8 @@ module ActionWebService
             end
 
             def reset_invocation_response
-              erase_render_results
-              response.instance_variable_set :@header, Rack::Utils::HeaderHash.new(::ActionController::Response::DEFAULT_HEADERS.merge("cookie" => []))
+              self.instance_variable_set(:@_response_body, nil)
+              response.instance_variable_set :@header, Rack::Utils::HeaderHash.new("cookie" => [], 'Content-Type' => 'text/html')
             end
 
             def public_method_name(service_name, method_name)
