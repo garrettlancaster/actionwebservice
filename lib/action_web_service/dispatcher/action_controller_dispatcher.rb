@@ -165,7 +165,7 @@ module ActionWebService # :nodoc:
         private
           def base_uri
             host = request.host_with_port
-            relative_url_root = ::ActionController::Base.relative_url_root
+            relative_url_root = Rails.configuration.action_controller[:relative_url_root]
             scheme = request.ssl? ? 'https' : 'http'
             '%s://%s%s/%s/' % [scheme, host, relative_url_root, self.class.controller_path]
           end
@@ -183,7 +183,7 @@ module ActionWebService # :nodoc:
             case dispatching_mode
             when :direct
               api = self.class.web_service_api
-              web_service_name = controller_class_name.sub(/Controller$/, '').underscore
+              web_service_name = controller_name.sub(/Controller$/, '').underscore
               apis[web_service_name] = [api, register_api(api, marshaler)]
             when :delegated, :layered
               self.class.web_services.each do |web_service_name, info|
