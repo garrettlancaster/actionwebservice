@@ -1,3 +1,7 @@
+= On this fork...
+
+This fork is identical to livestation with some minor mods to handle quirks in the QuickBooks connector service. Just as with livestation, it works with Rails 3.1.x
+
 = Action Web Service -- Serving APIs on rails
 
 Action Web Service provides a way to publish interoperable web service APIs with
