@@ -32,9 +32,11 @@ module ActionWebService # :nodoc:
       # +method_missing+.
       class_inheritable_option :default_api_method
 
+
+      # class_inheritable_option('api_public_method_names', {})
       # Disallow instantiation
       private_class_method :new, :allocate
-      
+
       class << self
         include ActionWebService::SignatureTypes
 
@@ -90,7 +92,7 @@ module ActionWebService # :nodoc:
           name = name.to_sym
           public_name = public_api_method_name(name)
           method = Method.new(name, public_name, expects, returns)
-          write_inheritable_hash("api_methods", name => method)
+          write_inheritable_hash("_api_methods", name => method)
           write_inheritable_hash("api_public_method_names", public_name => name)
         end
 
@@ -155,7 +157,7 @@ module ActionWebService # :nodoc:
         #      :getCompletedCount=>#<ActionWebService::API::Method:0x2437794 ...>}
         #   ProjectsApi.api_methods[:getCount].public_name #=> "GetCount"
         def api_methods
-          read_inheritable_attribute("api_methods") || {}
+          read_inheritable_attribute("_api_methods") || {}
         end
 
         # The Method instance for the given public API method name, if any

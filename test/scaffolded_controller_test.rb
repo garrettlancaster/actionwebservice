@@ -1,10 +1,15 @@
 # encoding: UTF-8
 require 'abstract_unit'
-
-ActionController::Routing::Routes.draw do |map|
-  map.connect '', :controller => 'scaffolded'
-  map.connect ':controller/:action/:id'
+require 'rails/all'
+class MyApp < Rails::Application
+  routes.draw do
+    match ':controller(/:action(/:id(.:format)))'
+  end
 end
+# ActionController::Routing.routes.draw do |map|
+#   map.connect '', :controller => 'scaffolded'
+#   map.connect ':controller/:action/:id'
+# end
 
 ActionController::Base.view_paths = [ '.' ]
 

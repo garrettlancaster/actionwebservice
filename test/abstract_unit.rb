@@ -2,9 +2,11 @@
 $: << "#{File.dirname(__FILE__)}/../lib"
 ENV["RAILS_ENV"] = "test"
 require 'rubygems'
-require 'test/unit'
+# require 'test/unit'
 require 'action_web_service'
+require 'active_support/all'
 require 'action_controller'
+require 'action_controller/base'
 require 'action_controller/test_case'
 require 'action_view'
 require 'action_view/test_case'

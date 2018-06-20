@@ -28,19 +28,6 @@
 
 #
 
-unless Enumerable.method_defined?(:map)   # Ruby 1.4.6
-  module Enumerable
-    alias map collect
-  end
-end
-
-unless File.respond_to?(:read)   # Ruby 1.6
-  def File.read(fname)
-    open(fname) {|f|
-      return f.read
-    }
-  end
-end
 
 def File.binread(fname)
   open(fname, 'rb') {|f|

@@ -6,6 +6,7 @@ module ActionWebService # :nodoc:
 
     def self.included(base) # :nodoc:
       base.extend(ClassMethods)
+      base.class_inheritable_option("before_invocation_interceptors", [])
       base.send(:include, ActionWebService::Invocation::InstanceMethods)
     end
 
@@ -82,11 +83,11 @@ module ActionWebService # :nodoc:
       alias :after_invocation :append_after_invocation
 
       def before_invocation_interceptors # :nodoc:
-        read_inheritable_attribute("before_invocation_interceptors")
+        read_inheritable_attribute("before_invocation_interceptors") || []
       end
 
       def after_invocation_interceptors # :nodoc:
-        read_inheritable_attribute("after_invocation_interceptors")
+        read_inheritable_attribute("after_invocation_interceptors") || []
       end
 
       def included_intercepted_methods # :nodoc:
@@ -103,7 +104,7 @@ module ActionWebService # :nodoc:
         end
 
         def prepend_interceptors_to_chain(condition, interceptors)
-          interceptors = interceptors + read_inheritable_attribute("#{condition}_invocation_interceptors")
+          interceptors = interceptors + (read_inheritable_attribute("#{condition}_invocation_interceptors") || [])
           write_inheritable_attribute("#{condition}_invocation_interceptors", interceptors)
         end
 
