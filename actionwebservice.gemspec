@@ -1,9 +1,9 @@
 # -*- encoding: utf-8 -*-
 # stub: actionwebservice 3.2.0 ruby lib
-
+require_relative './lib/action_web_service/version.rb'
 Gem::Specification.new do |s|
   s.name = "actionwebservice".freeze
-  s.version = "3.1.0"
+  s.version = ActionWebService::VERSION::STRING
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0".freeze) if s.respond_to? :required_rubygems_version=
   s.require_paths = ["lib".freeze]
